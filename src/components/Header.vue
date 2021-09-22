@@ -1,5 +1,5 @@
 <template>
-  <header>
+  <header class="">
     <img alt="Spotify logo" src="../assets/img/logo-spotify.png">
   </header>
 </template>
@@ -15,5 +15,15 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
+@import "../style/generals";
 
+  header{
+    width: 100%;
+    height: 10vh;
+    display: flex;
+    background-color: $primary-color;
+    img{
+      justify-content: start;
+    }
+  }
 </style>
