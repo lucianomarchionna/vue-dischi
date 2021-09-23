@@ -1,10 +1,8 @@
 <template>
   <div class="main-dimension">
-        <div class="container">
-            <div class="single">
-                <div v-for="(album, index) in albumsList" :key="index">
-                    <Album :item="album" />
-                </div>
+        <div class="container-album">
+            <div class="album" v-for="(album, index) in albumsList" :key="index">
+                <Album :item="album"/>
             </div>
         </div>
   </div>
@@ -45,7 +43,25 @@ export default {
 
 .main-dimension{
     width: 100%;
-    height: 90vh;
+    height: calc(100vh - 10vh);
     background: $secondary-color;
+
+    .container-album{
+        width: 1170px;
+        margin: auto;
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        padding-top: 20px;
+
+        .album{
+            cursor: pointer;
+            flex-basis: calc(100% / 5 - 24px);
+            margin: 10px;
+            background-color: $primary-color;
+        }
+    }
+
+        
 }
 </style>
