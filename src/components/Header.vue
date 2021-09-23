@@ -23,6 +23,7 @@ export default {
     display: flex;
     background-color: $primary-color;
     img{
+      margin-left: 20px;
       justify-content: start;
     }
   }
