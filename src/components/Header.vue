@@ -1,6 +1,11 @@
 <template>
   <header>
-    <img alt="Spotify logo" src="../assets/img/logo-spotify.png">
+    <div class="elements">
+      <img alt="Spotify logo" src="../assets/img/logo-spotify.png">
+      <select class="font-size" name="genre" id="genre">
+        <option value="">Tutti</option>
+      </select>
+    </div>
   </header>
 </template>
 
@@ -20,11 +25,27 @@ export default {
   header{
     width: 100%;
     height: 10vh;
-    display: flex;
     background-color: $primary-color;
-    img{
-      margin-left: 20px;
-      justify-content: start;
+
+    .elements{
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      height: 100%;
+      img{
+        margin-left: 20px;
+        height: 100%;
+        
+      }
+
+      .font-size{
+        margin-right: 50px;
+        height: 30px;
+        padding: 0 20px;
+      }
+
     }
+    
   }
 </style>
