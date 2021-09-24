@@ -2,8 +2,19 @@
   <header>
     <div class="elements">
       <img alt="Spotify logo" src="../assets/img/logo-spotify.png">
-      <select class="font-size" name="genre" id="genre">
+      <select 
+        v-model="genreFilter"
+        @change="$emit('changedGenre', genreFilter)"
+         class="font-size" name="genre" id="genre"
+      >
         <option value="">Tutti</option>
+        <option
+          v-for="(genre, index) in genres"
+          :key="index"
+          :value="genre"
+        >
+        {{genre}}
+        </option>
       </select>
     </div>
   </header>
@@ -12,9 +23,15 @@
 <script>
 export default {
   name: 'Header',
-  props: {
-    
-  }
+  props:{
+    genres: Array,
+  },
+  data(){
+    return{
+      genreFilter: "",
+    };
+  },
+  methods:{}
 }
 </script>
 
@@ -43,6 +60,7 @@ export default {
         margin-right: 50px;
         height: 30px;
         padding: 0 20px;
+        font-size: 18px;
       }
 
     }

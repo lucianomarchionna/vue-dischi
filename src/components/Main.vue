@@ -1,8 +1,12 @@
 <template>
   <div class="main-dimension">
         <div class="container-album">
-            <div class="album" v-for="(album, index) in albumsList" :key="index">
-                <Album :item="album"/>
+            <div class="album">
+                <Album 
+                    v-for="(albumItem, index) in filteredAlbums" 
+                    :key="index"
+                    :album="albumItem"
+                />
             </div>
         </div>
   </div>
@@ -14,27 +18,44 @@ import Album from "./Album.vue"
 export default {
     name: 'Main',
     components: {
-        Album
+        Album,
+    },
+    props:{
+        selectedGenre: String,
+    },
+    methods:{
+        filteredAlbums(){
+            if(this.selectedGenre === ""){
+                return this.albums;
+            }
+            return this.albums.filter(
+                (item) => item.genre === this.selectedGenre
+            );
+        },
     },
     data(){
         return{
+            albums: [],
+            genres: [],
             APIUrl: "https://flynn.boolean.careers/exercises/api/array/music",
-            albumsList: []
         }
     },
     created(){
-        this.getAlbums();
+        axios.get(this.APIUrl)
+        .then((res) =>{
+            this.albums = res.data.response;
+            this.albums.forEach((album) => {
+                if (!this.genres.includes(album.genre)){
+                    this.genres.push(album.genre)
+                }
+            });
+            this.$emit("genresReady", this.genres);
+        })
+        .catch((err) =>{
+            console.log(err);
+        });
     },
-    methods: {
-        getAlbums(){
-            axios.get(this.APIUrl)
-            .then(res =>{
-                console.log(res);
-                this.albumsList = res.data.response;
-            })
-        }
-    }
-}
+};
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

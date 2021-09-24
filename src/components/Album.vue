@@ -1,10 +1,10 @@
 <template>
   <div class="album">
-    <img :src="item.poster" :alt="item.title">
+    <img :src="album.poster" :alt="album.title">
     <div class="subtitles">
-      <h3 id="title">{{item.title.toUpperCase()}}</h3>
-      <h5 id="author">{{item.author}}</h5>
-      <h5 id="year">{{item.year}}</h5>
+      <h3 id="title">{{album.title.toUpperCase()}}</h3>
+      <h5 id="author">{{album.author}}</h5>
+      <h5 id="year">{{album.year}}</h5>
     </div>
   </div>
 </template>
@@ -12,7 +12,9 @@
 <script>
 export default {
     name: 'Album',
-    props: ['item']
+    props:[{
+      album: Object,
+    }]
 }
 </script>
 
